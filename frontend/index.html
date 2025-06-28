@@ -1,45 +1,489 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rice Classifier</title>
-<style>
-  body { font-family: Arial, sans-serif; max-width: 500px; margin: 2em auto; }
-  input, button { padding: 0.5em; font-size: 1em; }
-  #result { margin-top: 1em; font-weight: bold; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrainPalette - AI Rice Classification</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Rice Image Classifier</h1>
-  <input type="file" id="fileInput" accept="image/*" />
-  <button onclick="uploadImage()">Predict</button>
-  <p id="result"></p>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 12h20"/>
+                            <path d="M2 12l3-3 3 3"/>
+                            <path d="M2 12l3 3 3-3"/>
+                            <path d="M12 2v20"/>
+                            <path d="M12 2l3 3-3 3"/>
+                            <path d="M12 2l-3 3 3 3"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h1>GrainPalette</h1>
+                        <p>AI-Powered Rice Classification</p>
+                    </div>
+                </div>
+                <div class="header-badges">
+                    <div class="badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                        <span>Deep Learning</span>
+                    </div>
+                    <div class="badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <span>For Farmers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <script>
-    async function uploadImage() {
-      const fileInput = document.getElementById('fileInput');
-      if (!fileInput.files.length) {
-        alert('Please select an image file!');
-        return;
-      }
-      const file = fileInput.files[0];
-      const formData = new FormData();
-      formData.append('file', file);
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">
+                    Identify Rice Types with
+                    <span class="highlight">AI Precision</span>
+                </h2>
+                <p class="hero-description">
+                    Advanced Convolutional Neural Networks powered by MobileNetv4 transfer learning 
+                    to help farmers, scientists, and agriculture enthusiasts classify rice varieties 
+                    with professional accuracy.
+                </p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+                                <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+                            </svg>
+                        </div>
+                        <h3>Deep Learning</h3>
+                        <p>State-of-the-art CNN architecture with transfer learning for superior accuracy</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 20h10"/>
+                                <path d="M10 20c5.5-2.5.8-6.4 3-10"/>
+                                <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/>
+                                <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.7 4.3-1.4 1-1.1 1.6-2.7 1.7-4.6-2.7.1-4 1-4.9 2z"/>
+                            </svg>
+                        </div>
+                        <h3>5 Rice Types</h3>
+                        <p>Comprehensive classification covering major rice varieties for informed cultivation</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="6"/>
+                                <circle cx="12" cy="12" r="2"/>
+                            </svg>
+                        </div>
+                        <h3>Instant Results</h3>
+                        <p>Get immediate classification results with detailed cultivation recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      const response = await fetch('http://127.0.0.1:5000/predict', {
-        method: 'POST',
-        body: formData
-      });
+    <!-- Upload Section -->
+    <section class="upload-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+                        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+                    </svg>
+                    <h2>Start Classification</h2>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+                        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+                    </svg>
+                </div>
+                <p class="section-description">
+                    Upload a clear image of your rice grain for instant AI-powered classification. 
+                    Our system will identify the variety and provide cultivation recommendations.
+                </p>
+            </div>
+            
+            <div class="upload-container">
+                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                    </div>
+                    <h3>Upload Rice Grain Image</h3>
+                    <p>Drag and drop your image here, or click to browse</p>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="handleFileSelect(event)">
+                    <button class="upload-btn" type="button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                            <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                        Choose File
+                    </button>
+                </div>
+                <div id="selectedFile" class="selected-file" style="display: none;">
+                    <p>Selected: <span id="fileName"></span></p>
+                    <button type="button" onclick="uploadImage()" class="predict-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                        Predict Rice Type
+                    </button>
+                </div>
+                <p class="upload-note">Supported formats: JPG, PNG, GIF • Max size: 10MB</p>
+                <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Analyzing your rice grain image...</p>
+                </div>
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
 
-      if (!response.ok) {
-        document.getElementById('result').innerText = 'Error: ' + (await response.text());
-        return;
-      }
+    <!-- Results Section -->
+    <section class="results-section" id="resultsSection" style="display: none;">
+        <div class="container">
+            <!-- Primary Result -->
+            <div class="primary-result">
+                <div class="result-header">
+                    <div class="result-title">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="8" r="7"/>
+                            <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/>
+                        </svg>
+                        <div>
+                            <h3 id="primaryRiceType">Basmati Rice</h3>
+                            <p>Classification Result</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-details" id="riceDetails">
+                    <div class="detail-item">
+                        <div class="detail-icon water">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Water Requirement</h4>
+                            <p id="waterRequirement">Medium - 1200mm annually</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon fertilizer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Fertilizer Tips</h4>
+                            <p id="fertilizerTips">High nitrogen in vegetative stage</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon growth">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Growth Period</h4>
+                            <p id="growthPeriod">120-140 days</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      const data = await response.json();
-      document.getElementById('result').innerText = 'Prediction: ' + data.prediction;
-    }
-  </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 12h20"/>
+                                <path d="M2 12l3-3 3 3"/>
+                                <path d="M2 12l3 3 3-3"/>
+                                <path d="M12 2v20"/>
+                                <path d="M12 2l3 3-3 3"/>
+                                <path d="M12 2l-3 3 3 3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>GrainPalette</h3>
+                            <p> Rice Classification</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Empowering farmers and agriculture professionals with cutting-edge 
+                        AI technology for precise rice variety identification and cultivation guidance.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Technology</h4>
+                    <ul>
+                        <li>• Convolutional Neural Networks (CNN)</li>
+                        <li>• MobileNetv4 Transfer Learning</li>
+                        <li>• Deep Learning Classification</li>
+                        <li>• Computer Vision Processing</li>
+                        <li>• Real-time Image Analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Target Users</h4>
+                    <ul>
+                        <li>• Professional Farmers</li>
+                        <li>• Agriculture Scientists</li>
+                        <li>• Research Institutions</li>
+                        <li>• Home Gardeners</li>
+                        <li>• Agricultural Consultants</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 GrainPalette. Advanced AI for Agricultural Excellence.</p>
+                <div class="footer-links">
+                    <a href="https://github.com/bhavanareddyd" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:bhavanareddyd.12@gmail.com" aria-label="Email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="External Link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15,3 21,3 21,9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Rice type information database with all 5 types
+        const riceTypeInfo = {
+            'Basmati': {
+                water: 'Medium - 1200mm annually',
+                fertilizer: 'High nitrogen in vegetative stage',
+                growth: '120-140 days'
+            },
+            'Jasmine': {
+                water: 'High - 1500mm annually',
+                fertilizer: 'Balanced NPK with organic matter',
+                growth: '105-125 days'
+            },
+            'Arborio': {
+                water: 'High - 1400mm annually',
+                fertilizer: 'High nitrogen early, potassium later',
+                growth: '140-160 days'
+            },
+            'Ipsala': {
+                water: 'Medium-High - 1300mm annually',
+                fertilizer: 'Moderate nitrogen, high phosphorus',
+                growth: '130-150 days'
+            },
+            'Karacadag': {
+                water: 'Low-Medium - 1000mm annually',
+                fertilizer: 'Low nitrogen, organic compost',
+                growth: '110-130 days'
+            }
+        };
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('fileName').textContent = file.name;
+                document.getElementById('selectedFile').style.display = 'block';
+                hideError();
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('selectedFile').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingIndicator').style.display = 'none';
+            document.getElementById('selectedFile').style.display = 'block';
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            hideLoading();
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        function updateResults(data) {
+            // Get the prediction from the response
+            let primaryType = data.prediction;
+            
+            // Clean up the prediction name to match our database keys
+            if (primaryType) {
+                // Remove "Rice" suffix if present and trim whitespace
+                primaryType = primaryType.replace(/\s*Rice\s*$/i, '').trim();
+                
+                // Handle case variations
+                const typeMap = {
+                    'basmati': 'Basmati',
+                    'jasmine': 'Jasmine',
+                    'arborio': 'Arborio',
+                    'ipsala': 'Ipsala',
+                    'karacadag': 'Karacadag'
+                };
+                
+                const lowerType = primaryType.toLowerCase();
+                console.log('Lowercase Type:', lowerType);
+                console.log('Type Map:', typeMap);
+                primaryType = typeMap[lowerType] || primaryType;
+            }
+
+            // Update primary result
+            document.getElementById('primaryRiceType').textContent = primaryType + ' Rice';
+
+            // Update rice details
+            const info = riceTypeInfo[primaryType];
+            if (info) {
+                document.getElementById('waterRequirement').textContent = info.water;
+                document.getElementById('fertilizerTips').textContent = info.fertilizer;
+                document.getElementById('growthPeriod').textContent = info.growth;
+            } else {
+                // Fallback to Basmati if type not found
+                const fallbackInfo = riceTypeInfo['Basmati'];
+                document.getElementById('waterRequirement').textContent = fallbackInfo.water;
+                document.getElementById('fertilizerTips').textContent = fallbackInfo.fertilizer;
+                document.getElementById('growthPeriod').textContent = fallbackInfo.growth;
+            }
+
+            // Show results section
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function uploadImage() {
+            console.log("uploadImage() triggered");
+            const fileInput = document.getElementById('fileInput');
+            if (!fileInput.files.length) {
+                showError('Please select an image file!');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showError('Please select a valid image file!');
+                return;
+            }
+
+            // Validate file size (10MB limit)
+            if (file.size > 10 * 1024 * 1024) {
+                showError('File size must be less than 10MB!');
+                return;
+            }
+
+            showLoading();
+            hideError();
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+                console.log("Fetch success?", response.ok, "Status:", response.status);
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Server error: ${errorText}`);
+                }
+
+                const data = await response.json();
+                console.log('Response Data:', data);
+                hideLoading();
+                updateResults(data);
+                console.log('updateResults() called');
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError(`Error: ${error.message}. Please make sure the backend server is running on http://127.0.0.1:5000`);
+            }
+        }
+
+        // Add drag and drop functionality
+        const uploadArea = document.querySelector('.upload-area');
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#059669';
+            uploadArea.style.background = '#ecfdf5';
+        });
+
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#d1d5db';
+            uploadArea.style.background = '#f9fafb';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#d1d5db';
+            uploadArea.style.background = '#f9fafb';
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('fileInput').files = files;
+                handleFileSelect({ target: { files: files } });
+            }
+        });
+    </script>
 </body>
-</html>
+</html

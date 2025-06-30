@@ -20,7 +20,10 @@ def prepare_image(img_path):
     img = img / 255.0
     img = np.expand_dims(img, axis=0)
     return img
-
+@app.route("/")
+def hello_world():
+    
+    return "<h1>Welcome to Rice Type Classification Server</h1>"
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' not in request.files:
